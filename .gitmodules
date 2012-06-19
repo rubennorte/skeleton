@@ -1,0 +1,3 @@
+[submodule "src"]
+	path = src
+	url = https://bitbucket.org/rubennorte/skeleton-boilerplate.git
