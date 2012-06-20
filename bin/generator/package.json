@@ -1,0 +1,12 @@
+{
+  "name": "skeleton",
+  "version": "0.0.1",
+  "description": "Skeleton.js project generator",
+  "author": "Rubén Norte <rubennorte@gmail.com>",
+  "dependencies": {
+    "commander": "0.6.x",
+    "glob": "3.1.x",
+    "wrench": "1.3.9",
+  },
+  "private": true
+}
