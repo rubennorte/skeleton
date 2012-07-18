@@ -5,7 +5,11 @@
  */
 
 var program = require('commander'),
-    project = require('./project');
+    project = require('./project'),
+    model = require('./model'),
+    collection = require('./collection'),
+    view = require('./view'),
+    router = require('./router');
 
 /**
  * Module definitions
@@ -19,10 +23,54 @@ program
   .command('new <project>')
   .description('create a new skeleton project')
   .action(project.create)
-  .on('--help', function() {
+  .on('--help', function(){
     console.log('  Example:');
     console.log();
     console.log('    $ skeleton new my-project');
+    console.log();
+  });
+
+program
+  .command('generate-model <name>')
+  .description('generate a new skeleton model')
+  .action(model.create)
+  .on('--help', function(){
+    console.log('  Example:');
+    console.log();
+    console.log('    $ skeleton generate-model user');
+    console.log();
+  });
+
+program
+  .command('generate-collection <name>')
+  .description('generate a new skeleton collection')
+  .action(collection.create)
+  .on('--help', function(){
+    console.log('  Example:');
+    console.log();
+    console.log('    $ skeleton generate-collection users');
+    console.log();
+  });
+
+program
+  .command('generate-view <name>')
+  .description('generate a new skeleton view')
+  .action(view.create)
+  .on('--help', function(){
+    console.log('  Example:');
+    console.log();
+    console.log('    $ skeleton generate-view user-profile');
+    console.log();
+  });
+
+program
+  .command('generate-router <name>')
+  .description('generate a new skeleton router')
+  .action(router.create)
+  .on('--help', function(){
+    console.log('  Example:');
+    console.log();
+    console.log('    $ skeleton generate-router users');
     console.log();
   });
 
