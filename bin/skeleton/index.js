@@ -29,7 +29,7 @@ program
 program
   .command('new <project>')
   .description('create a new skeleton project')
-  .action(common.checkInSkeletonProjectAnd(project.create))
+  .action(project.create)
   .on('--help', function(){
     console.log('  Example:');
     console.log();
