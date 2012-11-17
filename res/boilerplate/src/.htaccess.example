@@ -1,0 +1,15 @@
+# html5 pushstate (history) support:
+<ifModule mod_rewrite.c>
+    RewriteEngine On
+
+    # If doesn't have and extension, isn't a file or a directory
+    # and it's not the index file, return index.html
+    RewriteCond %{REQUEST_URI} !\.([^\/]+)$ [NC]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !index
+    RewriteRule (.*) index.html [L]
+</ifModule>
+
+# HTML5 cache manifest files
+AddType text/cache-manifest .manifest

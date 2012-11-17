@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<!-- Replace the html tag with this to use the HTML5 application cache -->
+<!--<html manifest="config/cache.manifest">-->
+  <head>
+    <title>Skeleton.js</title>
+    <meta content="text/html" http-equiv="content-type" charset="utf-8">
+
+    <!-- Mobile device optimization -->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">-->
+
+    <!-- LESS development mode -->
+    <!--<link rel="stylesheet/less" type="text/css" href="res/stylesheets/index.less">-->
+    <!--<script src="vendor/less.js" type="text/javascript"></script>-->
+
+    <script type="text/javascript" src="vendor/require.js" data-main="config/boot.js"></script>
+  </head>
+  <body>
+  </body>
+</html>

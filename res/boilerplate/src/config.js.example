@@ -1,0 +1,12 @@
+
+/**
+ * Current config loader
+ */
+
+define(['config/environments/development'], function(config){
+
+  'use strict';
+
+  return config;
+
+});

@@ -1,0 +1,14 @@
+CACHE MANIFEST
+
+# v0.1.2-beta
+
+CACHE:
+#../index.html
+#../app.js
+#../config.js
+# ...
+
+NETWORK:
+# Add here all the URLs of all the APIs you use, e.g.
+# http://mysite.com/api
+*
