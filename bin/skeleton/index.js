@@ -6,6 +6,7 @@
 
 var program = require('commander'),
     project = require('./project'),
+    server = require('./server'),
     model = require('./model'),
     collection = require('./collection'),
     view = require('./view'),
@@ -32,6 +33,17 @@ program
     console.log('  Example:');
     console.log();
     console.log('    $ skeleton new my-project');
+    console.log();
+  });
+
+program
+  .command('server [port=4000]')
+  .description('start a web server to serve your skeleton project')
+  .action(server.run)
+  .on('--help', function(){
+    console.log('  Example:');
+    console.log();
+    console.log('    $ skeleton server 4000');
     console.log();
   });
 
