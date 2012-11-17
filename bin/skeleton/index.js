@@ -38,9 +38,10 @@ program
   });
 
 program
-  .command('server [port=4000]')
+  .command('server')
   .description('start a web server to serve your skeleton project')
   .action(common.checkInSkeletonProjectAnd(server.run))
+  .option('-p, --port [port]', 'Port number')
   .on('--help', function(){
     console.log('  Example:');
     console.log();
