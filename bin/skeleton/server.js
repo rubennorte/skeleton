@@ -27,9 +27,9 @@ function onDirectoryChange(fn){
   };
 }
 
-exports.run = function(port){
-
-  var port = parseInt(port, 10) || 4000;
+exports.run = function(options){
+  
+  var port = parseInt(options.port, 10) || 4000;
   var dir = process.cwd();
 
   connect.createServer(

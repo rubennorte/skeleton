@@ -45,7 +45,8 @@ program
   .on('--help', function(){
     console.log('  Example:');
     console.log();
-    console.log('    $ skeleton server 4000');
+    console.log('    $ skeleton server');
+    console.log('    $ skeleton server -p 4000');
     console.log();
   });
 
