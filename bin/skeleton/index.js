@@ -11,7 +11,8 @@ var program = require('commander'),
     collection = require('./collection'),
     view = require('./view'),
     router = require('./router'),
-    updateDeps = require('./update-deps');
+    updateDeps = require('./update-deps'),
+    common = require('./common');
 
 /**
  * Module definitions
@@ -28,7 +29,7 @@ program
 program
   .command('new <project>')
   .description('create a new skeleton project')
-  .action(project.create)
+  .action(common.checkInSkeletonProjectAnd(project.create))
   .on('--help', function(){
     console.log('  Example:');
     console.log();
@@ -39,7 +40,7 @@ program
 program
   .command('server [port=4000]')
   .description('start a web server to serve your skeleton project')
-  .action(server.run)
+  .action(common.checkInSkeletonProjectAnd(server.run))
   .on('--help', function(){
     console.log('  Example:');
     console.log();
@@ -50,7 +51,7 @@ program
 program
   .command('generate-model <name>')
   .description('generate a new skeleton model')
-  .action(model.create)
+  .action(common.checkInSkeletonProjectAnd(model.create))
   .on('--help', function(){
     console.log('  Example:');
     console.log();
@@ -61,7 +62,7 @@ program
 program
   .command('generate-collection <name>')
   .description('generate a new skeleton collection')
-  .action(collection.create)
+  .action(common.checkInSkeletonProjectAnd(collection.create))
   .on('--help', function(){
     console.log('  Example:');
     console.log();
@@ -72,7 +73,7 @@ program
 program
   .command('generate-view <name>')
   .description('generate a new skeleton view')
-  .action(view.create)
+  .action(common.checkInSkeletonProjectAnd(view.create))
   .option('-t, --template [templateName]', 'Create and assign a template')
   .option('-d, --dependencies <deps>', 'Dependency list', list)
   .option('-c, --add-class [className]', 'Add class name')
@@ -86,7 +87,7 @@ program
 program
   .command('generate-router <name>')
   .description('generate a new skeleton router')
-  .action(router.create)
+  .action(common.checkInSkeletonProjectAnd(router.create))
   .on('--help', function(){
     console.log('  Example:');
     console.log();
@@ -97,7 +98,7 @@ program
 program
   .command('update-deps')
   .description('update the dependencies of a skeleton project')
-  .action(updateDeps.update)
+  .action(common.checkInSkeletonProjectAnd(updateDeps.update))
   .on('--help', function(){
     console.log('  Example:');
     console.log();
