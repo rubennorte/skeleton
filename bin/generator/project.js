@@ -12,21 +12,6 @@ var fs = require('fs'),
  * Module exports
  */
 
-exports.create = function(dst){
-  
-  fs.stat(dst, function(err, info){
-    if (!err) return console.log('The project directory cannot be created: the file already exists');
-    var boilerplateSrc = path.join(__dirname, '..', '..', 'src');
-    wrench.copyDirRecursive(boilerplateSrc, dst, function(err){
-      if (err) return console.log('Error while generating project contents');
-
-      glob(dst + '/**/.git', deleteRecursive);
-      glob(dst + '/**/.gitmodules', deleteRecursive);
-    });
-  });
-
-};
-
 function deleteRecursive(err, files){
   if (err) return;
   files.forEach(function(file){
@@ -41,3 +26,18 @@ function deleteRecursive(err, files){
     });
   });
 }
+
+exports.create = function(dst){
+  
+  fs.stat(dst, function(err, info){
+    if (!err) return console.log('The project directory cannot be created: the file already exists');
+    var boilerplateSrc = path.join(__dirname, '..', '..', 'src');
+    wrench.copyDirRecursive(boilerplateSrc, dst, function(err){
+      if (err) return console.log('Error while generating project contents');
+
+      glob(dst + '/**/.git', deleteRecursive);
+      glob(dst + '/**/.gitmodules', deleteRecursive);
+    });
+  });
+
+};
