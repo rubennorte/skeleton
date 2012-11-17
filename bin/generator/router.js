@@ -13,12 +13,14 @@ var fs = require('fs'),
 
 exports.create = function(name){
 
-  var fileName = 'routers/' + _s.slugify(_s.humanize(name)) + '.js';
+  var fileName = _s.slugify(_s.humanize(name)),
+      path = 'routers/' + fileName + '.js';
+
   fs.stat('routers', function(err, stat){
     if (err || !stat.isDirectory()) return console.log('The "routers" directory does not exist');
 
-    fs.stat(fileName, function(err, stat){
-      if (!err) return console.log('The file %s already exists', fileName);
+    fs.stat(path, function(err, stat){
+      if (!err) return console.log('The file %s already exists', path);
 
       fs.readFile(__dirname + '/templates/router.js.tpl', function (err, data) {
         if (err) throw err;
@@ -29,17 +31,18 @@ exports.create = function(name){
 
         var content = template({
           humanName: humanName,
-          className: _s.classify(humanName) + 'Router'
+          className: _s.classify(humanName) + 'Router',
+          fileName: fileName
         });
 
-        fs.writeFile(fileName, content, function(err){
-          if (err) return console.log('Error writing to file %s', fileName);
+        fs.writeFile(path, content, function(err){
+          if (err) return console.log('Error writing to file %s', path);
 
-          console.log('+++ %s\tRouter %s successfully created', fileName, name);
+          console.log('+++ %s\tRouter %s successfully created', path, name);
         });
       });
 
     });
   });
 
-}
+};

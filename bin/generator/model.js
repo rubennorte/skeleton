@@ -13,12 +13,14 @@ var fs = require('fs'),
 
 exports.create = function(name){
 
-  var fileName = 'models/' + _s.slugify(_s.humanize(name)) + '.js';
+  var fileName = _s.slugify(_s.humanize(name)),
+      path = 'models/' + fileName + '.js';
+
   fs.stat('models', function(err, stat){
     if (err || !stat.isDirectory()) return console.log('The "models" directory does not exist');
 
-    fs.stat(fileName, function(err, stat){
-      if (!err) return console.log('The file %s already exists', fileName);
+    fs.stat(path, function(err, stat){
+      if (!err) return console.log('The file %s already exists', path);
 
       fs.readFile(__dirname + '/templates/model.js.tpl', function (err, data) {
         if (err) throw err;
@@ -29,17 +31,18 @@ exports.create = function(name){
 
         var content = template({
           humanName: humanName,
-          className: _s.classify(humanName) + 'Model'
+          className: _s.classify(humanName) + 'Model',
+          fileName: fileName
         });
 
-        fs.writeFile(fileName, content, function(err){
-          if (err) return console.log('Error writing to file %s', fileName);
+        fs.writeFile(path, content, function(err){
+          if (err) return console.log('Error writing to file %s', path);
 
-          console.log('+++ %s\tModel %s successfully created', fileName, name);
+          console.log('+++ %s\tModel %s successfully created', path, name);
         });
       });
 
     });
   });
 
-}
+};
