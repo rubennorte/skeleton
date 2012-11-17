@@ -1,0 +1,3 @@
+[submodule "res/lib"]
+	path = res/lib
+	url = https://bitbucket.org/rubennorte/skeleton-lib.git
