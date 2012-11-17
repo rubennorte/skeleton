@@ -15,6 +15,10 @@ var program = require('commander'),
  * Module definitions
  */
 
+function list(str){
+  return str.split(',');
+}
+
 program
   .version('0.0.1')
   .usage('[command] <args>');
@@ -56,10 +60,13 @@ program
   .command('generate-view <name>')
   .description('generate a new skeleton view')
   .action(view.create)
+  .option('-t, --template [templateName]', 'Create and assign a template')
+  .option('-d, --dependencies <deps>', 'Dependency list', list)
+  .option('-c, --add-class [className]', 'Add class name')
   .on('--help', function(){
     console.log('  Example:');
     console.log();
-    console.log('    $ skeleton generate-view user-profile');
+    console.log('    $ skeleton generate-view user-profile -t -d jquery,underscore,./custom');
     console.log();
   });
 
