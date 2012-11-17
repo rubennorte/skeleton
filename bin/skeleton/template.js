@@ -13,9 +13,9 @@ var fs = require('fs'),
 exports.create = function(name){
 
   var fileName = _s.slugify(_s.humanize(name)),
-      path = 'templates/' + fileName + '.html';
+      path = 'res/templates/' + fileName + '.html';
 
-  fs.stat('templates', function(err, stat){
+  fs.stat('res/templates', function(err, stat){
     if (err || !stat.isDirectory()) return console.log('The "templates" directory does not exist');
 
     fs.stat(path, function(err, stat){
