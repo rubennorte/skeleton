@@ -9,7 +9,8 @@ var program = require('commander'),
     model = require('./model'),
     collection = require('./collection'),
     view = require('./view'),
-    router = require('./router');
+    router = require('./router'),
+    updateDeps = require('./update-deps');
 
 /**
  * Module definitions
@@ -78,6 +79,17 @@ program
     console.log('  Example:');
     console.log();
     console.log('    $ skeleton generate-router users');
+    console.log();
+  });
+
+program
+  .command('update-deps')
+  .description('update the dependencies of a skeleton project')
+  .action(updateDeps.update)
+  .on('--help', function(){
+    console.log('  Example:');
+    console.log();
+    console.log('    $ skeleton update-deps');
     console.log();
   });
 
