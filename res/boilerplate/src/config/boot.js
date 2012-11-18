@@ -1,5 +1,5 @@
 
-/** 
+/**
  * RequireJS configuration
  */
 
@@ -26,7 +26,7 @@ require.config({
     "json":   "vendor/requirejs-plugins/json",
     "tpl":    "vendor/requirejs-plugins/tpl",
     "async":  "vendor/requirejs-plugins/async",
-    "cs"      "vendor/requirejs-plugins/cs",
+    "cs":     "vendor/requirejs-plugins/cs",
 
     // Add other RequireJS plugins here
 
