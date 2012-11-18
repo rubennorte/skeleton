@@ -11,5 +11,6 @@
     "underscore.string": "2.2.x",
     "connect": "2.x"
   },
+  "bin": "./src/index.js",
   "private": true
 }
