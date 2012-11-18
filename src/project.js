@@ -14,8 +14,8 @@ var fs = require('fs'),
 
 exports.create = function(dst){
   
-  var boilerplateSrc = path.join(__dirname, '..', '..', 'res', 'boilerplate');
-  var libSrc = path.join(__dirname, '..', '..', 'res', 'lib');
+  var boilerplateSrc = path.join(__dirname, '..', 'res', 'boilerplate');
+  var libSrc = path.join(__dirname, '..', 'res', 'lib');
 
   fs.stat(dst, function(err, info){
     if (!err) return console.log('The project directory cannot be created: the file already exists');
@@ -27,6 +27,8 @@ exports.create = function(dst){
           fs.createWriteStream(path.join(dst, 'src', 'index.html')));
       fs.createReadStream(path.join(dst, 'src', 'config.js.example')).pipe(
           fs.createWriteStream(path.join(dst, 'src', 'config.js')));
+
+      fs.rename(path.join(dst, 'gitignore'), path.join(dst, '.gitignore'), function(){});
 
       wrench.copyDirRecursive(libSrc, path.join(dst, 'src', 'vendor', 'skeleton'), function(err){
         if (err) return console.log('Error adding skeleton lib to project');
