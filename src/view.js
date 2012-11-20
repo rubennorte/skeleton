@@ -50,7 +50,7 @@ exports.create = function(name, options){
   });
 
   var fileName = _s.slugify(_s.humanize(name)),
-      path = 'views/' + fileName + '.js';
+      path = 'app/views/' + fileName + '.js';
 
   // Templating
   var templateFileName, templatePath, templateName;
@@ -69,7 +69,7 @@ exports.create = function(name, options){
     });
   }
 
-  fs.stat('views', function(err, stat){
+  fs.stat('app/views', function(err, stat){
     if (err || !stat.isDirectory()) return console.log('The "views" directory does not exist');
 
     fs.stat(path, function(err, stat){

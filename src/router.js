@@ -14,9 +14,9 @@ var fs = require('fs'),
 exports.create = function(name){
 
   var fileName = _s.slugify(_s.humanize(name)),
-      path = 'routers/' + fileName + '.js';
+      path = 'app/routers/' + fileName + '.js';
 
-  fs.stat('routers', function(err, stat){
+  fs.stat('app/routers', function(err, stat){
     if (err || !stat.isDirectory()) return console.log('The "routers" directory does not exist');
 
     fs.stat(path, function(err, stat){

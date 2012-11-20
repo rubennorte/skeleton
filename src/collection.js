@@ -14,9 +14,9 @@ var fs = require('fs'),
 exports.create = function(name){
 
   var fileName = _s.slugify(_s.humanize(name)),
-      path = 'collections/' + fileName + '.js';
+      path = 'app/collections/' + fileName + '.js';
 
-  fs.stat('collections', function(err, stat){
+  fs.stat('app/collections', function(err, stat){
     if (err || !stat.isDirectory()) return console.log('The "collections" directory does not exist');
 
     fs.stat(path, function(err, stat){
