@@ -4,7 +4,7 @@
  */
 
 define([
-  'skeleton/views/generic/composite'
+  'skeleton/views/composite'
 ], function(CompositeView){
 
   'use strict';
