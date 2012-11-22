@@ -13,11 +13,11 @@ define(['skeleton/config'], function(config){
   // config.env = undefined;
 
   // config.url.root = '/';
-  // config.url.assets = config.url.root + 'public/';
+  // config.url.assets = config.url.root + 'assets/';
   // config.url.images = config.url.assets + 'images/';
   // config.url.stylesheets = config.url.assets + 'stylesheets/';
   
-  // config.i18n.loadPath = config.url.assets + 'data/locales/';
+  // config.i18n.loadPath = config.url.assets + 'locales/';
   // config.i18n.defaultLocale = 'en';
 
   return config;

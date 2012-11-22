@@ -16,10 +16,10 @@ require.config({
     "views": "app/views",
 
     // Resource directories (only those loaded as modules)
-    "data": "res/data",
-    "locales": "res/locales",
-    "stylesheets": "res/stylesheets",
-    "templates": "res/templates",
+    "data": "assets/data",
+    "locales": "assets/locales",
+    "stylesheets": "assets/stylesheets",
+    "templates": "assets/templates",
 
     // RequireJS plugins
     "text":   "vendor/requirejs-plugins/text",
