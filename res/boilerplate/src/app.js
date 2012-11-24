@@ -4,9 +4,8 @@
  */
 
 define([
-  'require',
   'skeleton/app'
-], function(require, SkeletonApp){
+], function(SkeletonApp){
 
   'use strict';
 
