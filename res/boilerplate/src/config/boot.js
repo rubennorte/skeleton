@@ -82,7 +82,7 @@ require.config({
 
 require([
   'app',
-  'config/deps/initializers'
+  'gen/initializers'
 ], function(app){
   app.initialize();
 });

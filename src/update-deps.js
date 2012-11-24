@@ -40,7 +40,7 @@ function updateRouters(){
       deps: deps
     });
 
-    var path = 'config/deps/routers.js';
+    var path = 'gen/routers.js';
     fs.writeFile(path, content, function(err){
       if (err) return console.log('Error writing to file %s', path);
 
@@ -69,7 +69,7 @@ function updateInitializers(){
         deps: deps
       });
 
-      var path = 'config/deps/initializers.js';
+      var path = 'gen/initializers.js';
       fs.writeFile(path, content, function(err){
         if (err) return console.log('Error writing to file %s', path);
 
