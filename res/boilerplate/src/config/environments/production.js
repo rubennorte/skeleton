@@ -3,7 +3,7 @@
  * Configuration for production environment
  */
 
-define(['./default'], function(config){
+define(['../application'], function(config){
 
   'use strict';
 

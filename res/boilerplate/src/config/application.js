@@ -1,7 +1,6 @@
 
 /**
- * Default configuration
- * Applicable to all environments
+ * Default application configuration
  */
 
 define(['skeleton/config'], function(config){
