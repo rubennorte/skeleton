@@ -9,7 +9,7 @@ define(['../application'], function(config){
 
   config.env = 'development';
 
-  config.log.level = 0;
+  config.log.level = 'debug';
 
   // Add your development configuration here
 

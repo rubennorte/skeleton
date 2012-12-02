@@ -9,6 +9,8 @@ define(['../application'], function(config){
 
   config.env = 'production';
 
+  config.log.level = 'silent';
+
   // Add your production configuration here
 
   return config;
