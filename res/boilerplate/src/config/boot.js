@@ -59,9 +59,7 @@ require.config({
     // jQuery plugins
     "jquery/serialize-object": {
       deps: ["jquery"],
-      init: function($){
-        return $;
-      }
+      exports: "jQuery"
     }
 
     // Add other jquery plugins here (which aren't defined as AMD modules)
@@ -72,7 +70,13 @@ require.config({
       name: "skeleton",
       location: "vendor/skeleton"
     }
-  ]
+  ],
+
+  map: {
+    '*': {
+      'dom': 'jquery'
+    }
+  }
 
 });
 
