@@ -1,11 +1,11 @@
 {
-  appDir: 'src',
+  appDir: '../src',
   
   baseUrl: './',
 
-  dir: 'dist/optimized',
+  dir: '../dist/optimized',
     
-  // Remove this if you don't include all your templates in the built file.
+  // Comment this if you don't include all your templates in the built file.
   pragmasOnSave: {
     excludeTpl: true
   },
@@ -22,5 +22,5 @@
 
   name: "config/boot",
 
-  mainConfigFile: 'src/config/boot.js'
+  mainConfigFile: '../src/config/require.js'
 }
