@@ -37,8 +37,9 @@ define([
 
       var singleArgument = arguments.length === 1;
 
-      if (singleArgument && !_.isObject(name))
+      if (singleArgument && !_.isObject(name)){
         return this.templateVars[name];
+      }
 
       if (singleArgument){
         _.extend(this.templateVars, name);
@@ -65,7 +66,7 @@ define([
      * Triggers the "render:before" event
      */
     preRender: function(){
-      this.trigger('render:before');
+      this.trigger('render:before', this);
     },
 
     /**
@@ -80,15 +81,17 @@ define([
      */
     postRender: function(){
       this._rendered = true;
-      this.trigger('render render:after');
+      this.trigger('render', this);
+      this.trigger('render:after', this);
     },
 
     /**
      * Renders the view if it was already rendered
      */
     refresh: function(){
-      if (this._rendered)
+      if (this._rendered){
         this.render();
+      }
       return this;
     },
 
@@ -110,37 +113,28 @@ define([
     },
 
     /**
-     * Removes the view from the DOM and unbinds the attached event handlers
+     * Removes the view from the DOM and releases all references
      */
     remove: function(){
-      this.dispose();
+      // Remove element from DOM
       this.$el.remove();
-      if (!this._removed) // Avoids infinite recursion
+
+      if (!this.removed){ // Avoid infinite recursion
+        this.removed = true;
         this.trigger('remove', this);
-      this._removed = true;
+      }
+
+      this.stopListening();
+      this.dispose();
+
       return this;
     },
 
     /**
-     * Unbinds all events bound by this view
+     * Remove all event listeners (other than bound with listenTo)
+     * and used resources
      */
-    dispose: function(){
-      this.undelegateEvents();
-
-      // Unbinds the events bound by this view to its model and/or its
-      // collection
-      if (this.model) this.model.off(null, null, this);
-      if (this.collection) this.collection.off(null, null, this);
-
-      // Unbinds other bound events
-      this.unbindEvents();
-    },
-
-    /**
-     * Unbinds other events bound by this view (view, model and collection
-     * events have already been detached)
-     */
-    unbindEvents: function(){},
+    dispose: function(){},
 
     /**
      * Backbone _configure function redefined to attach the template

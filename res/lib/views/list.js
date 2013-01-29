@@ -19,7 +19,9 @@ define([
       View.apply(this, arguments);
 
       // Initialize _itemViews if it's not
-      if (!this._itemViews) this._itemViews = [];
+      if (!this._itemViews){
+        this._itemViews = [];
+      }
 
       _.defaults(this.options, {
         // Instances of this view class will be created for each model in the list
@@ -33,9 +35,9 @@ define([
       this.createItemViews();
 
       // Bind events
-      this.collection.on('reset', this.onReset, this);
-      this.collection.on('add', this.onAdd, this);
-      this.collection.on('remove', this.onRemove, this);
+      this.listenTo(this.collection, 'reset', this.onReset);
+      this.listenTo(this.collection, 'add', this.onAdd);
+      this.listenTo(this.collection, 'remove', this.onRemove);
     },
 
     doRender: function(){
@@ -57,8 +59,9 @@ define([
       this.createItemViews();
 
       // Populate the list again (the old items were previously removed)
-      if (this._rendered)
+      if (this._rendered){
         this.populateList();
+      }
     },
 
     /**
@@ -137,6 +140,17 @@ define([
         return this.$(this.options.listSelector);
       }
       return this.$el;
+    },
+
+    /**
+     * Remove the list and all its items
+     */
+    remove: function(){
+      // Remove sub-views
+      _(this._itemViews).invoke('remove');
+
+      // super.remove();
+      return View.prototype.remove.call(this);
     }
 
   });

@@ -59,8 +59,11 @@ define([
         case 'number':
         case 'boolean':
           
-          if (typeof(text) === 'number') text = '' + text;
-          else if (typeof(text) === 'boolean') text = text ? 'true' : 'false';
+          if (typeof(text) === 'number'){
+            text = '' + text;
+          } else if (typeof(text) === 'boolean'){
+            text = text ? 'true' : 'false';
+          }
 
           // If text is a string, search in translation object
           if (!this._translations[text] && !this._missingTranslations[text]){
@@ -78,10 +81,15 @@ define([
           break;
 
         case 'object':
-          // If text is an object, get the translations from it according
-          // to the current locale
-          if (this._locale in text) text = text[this._locale];
-          else if (this._defaultLocale in text) text = text[this._defaultLocale];
+          if (text){
+            // If text is an object (and not null), get the translations from it according
+            // to the current locale
+            if (this._locale in text){
+              text = text[this._locale];
+            } else if (this._defaultLocale in text){
+              text = text[this._defaultLocale];
+            }
+          }
           break;
 
         case 'function':
@@ -91,28 +99,35 @@ define([
           break;
       }
 
-      // If the key is not the only specified parameter, return interpolated
-      if (arguments.length > 1)
+      // If text is a string and the key is not the only specified parameter, return interpolated
+      if (typeof text === 'string' && arguments.length > 1){
         return _s.sprintf.apply(null, arguments);
+      }
       
       return text;
     },
 
     /**
-     * Returns the default locale according to the information provided
+     * Returns the system locale according to the information provided
      * by the navigator
      */
-    getUserDefaultLocale: function(){
-      var locale;
+    getSystemLocale: function(fn){
+      if (!navigator){
+        return fn(null, this.getDefaultLocale());
+      }
 
-      if (!navigator) return;
+      // Phonegap support
+      if (navigator.globalization && typeof navigator.globalization.getLocaleName === 'function'){
+        navigator.globalization.getLocaleName(function(locale){
+          fn(null, locale);
+        }, function(err){
+          fn(err);
+        });
+        return;
+      }
 
-      // Android fix
-      if (navigator.userAgent &&
-        (locale = navigator.userAgent.match(/android.*\W(\w\w)-(\w\w)\W/i)))
-        return locale;
-
-      return navigator.language;
+      var locale = toPOSIXLocale(navigator.language);
+      fn(null, locale);
     },
 
     getDefaultLocale: function(){
@@ -144,12 +159,16 @@ define([
      * Returns true if exists any valid locale file for the specified locale
      */
     isLocaleAvailable: function(locale){
-      if (!this._availableLocales) return undefined;
+      if (!this._availableLocales){
+        return undefined;
+      }
 
       var language = locale.substr(0,2),
           languageAvailable = _(this.availableLocales).include(language);
 
-      if (languageAvailable) return true;
+      if (languageAvailable){
+        return true;
+      }
 
       return locale.length === 5 && _(this.availableLocales).include(locale);
     },
@@ -160,8 +179,9 @@ define([
      * and the translations are loaded, callback function is invoked
      */
     setLocale: function(locale, translations, callback){
-      if (!rLocale.test(locale))
+      if (!rLocale.test(locale)){
         throw new Error(LOCALE_FORMAT_ERROR + ': ' + locale);
+      }
 
       locale = toPOSIXLocale(locale);
 
@@ -172,8 +192,9 @@ define([
       }
 
       // If the locale is the current one, return immediatelly
-      if (locale === this.getLocale())
+      if (locale === this.getLocale()){
         return callback && callback();
+      }
 
       if (translations){
         // If the translations are defined, we don't have to load them and can
@@ -186,16 +207,19 @@ define([
             localeFiles = [];
 
         if (!this._availableLocales ||
-          _(this._availableLocales).include(language))
+            _(this._availableLocales).include(language)){
           localeFiles.push('json!' + this._getLocaleUrl(language));
+        }
 
         if (region &&
-          (!this._availableLocales || (this._availableLocales).include(locale)))
+            (!this._availableLocales || (this._availableLocales).include(locale))){
           localeFiles.push('json!' + this._getLocaleUrl(locale));
+        }
 
         if (localeFiles.length === 0){
-          if (callback)
+          if (callback){
             callback('The specified locale is not available: ' + locale);
+          }
           return false;
         }
 
@@ -208,8 +232,9 @@ define([
      */
     setAvailableLocales: function(availableLocales){
       _(availableLocales).each(function(availableLocale){
-        if (!rStrictLocale.test(availableLocale))
+        if (!rStrictLocale.test(availableLocale)){
           throw new Error(LOCALE_FORMAT_ERROR + ': ' + availableLocale);
+        }
       });
       var prevAvailableLocales = this._availableLocales;
       this._availableLocales = availableLocales;
@@ -220,8 +245,9 @@ define([
      * Sets the default locale
      */
     setDefaultLocale: function(locale){
-      if (!rStrictLocale.test(locale))
+      if (!rStrictLocale.test(locale)){
         throw new Error(LOCALE_FORMAT_ERROR + ': ' + locale);
+      }
 
       var prevLocale = this._defaultLocale;
       this._defaultLocale = locale;
@@ -250,7 +276,9 @@ define([
         this._missingTranslations = {};
         this.trigger('change:locale', this);
       }
-      if (callback) callback(null, locale);
+      if (callback){
+        callback(null, locale);
+      }
     },
 
     // Loads the locale files and merges the translation objects
@@ -287,11 +315,13 @@ define([
   });
 
   function toPOSIXLocale(locale){
-    if (!locale)
+    if (!locale){
       return locale;
+    }
 
-    if (locale.length === 2)
+    if (locale.length === 2){
       return locale.toLowerCase();
+    }
     
     return locale.substr(0,2).toLowerCase() + '_' +
       locale.substr(3,2).toUpperCase();
