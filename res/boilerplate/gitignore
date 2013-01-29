@@ -1,0 +1,3 @@
+# Renamed as gitignore (without the dot) to be compatible with NPM
+/src/index.html
+/src/config.js
