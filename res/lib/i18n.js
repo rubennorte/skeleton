@@ -53,18 +53,17 @@ define([
      * Otherwise, search the translation for that key in the stored translations
      */
     t: function(text){
+      var locale = this.getLocale(),
+          language = this.getLanguage();
+
+      if (typeof text === 'boolean'){
+        text = text ? 'true' : 'false';
+      } else if (typeof text === 'number'){
+        text = '' + text;
+      }
 
       switch (typeof(text)){
         case 'string':
-        case 'number':
-        case 'boolean':
-          
-          if (typeof(text) === 'number'){
-            text = '' + text;
-          } else if (typeof(text) === 'boolean'){
-            text = text ? 'true' : 'false';
-          }
-
           // If text is a string, search in translation object
           if (!this._translations[text] && !this._missingTranslations[text]){
             // The translation is not found, so increment the counter for
@@ -84,8 +83,10 @@ define([
           if (text){
             // If text is an object (and not null), get the translations from it according
             // to the current locale
-            if (this._locale in text){
-              text = text[this._locale];
+            if (locale in text){
+              text = text[locale];
+            } else if (language in text){
+              text = text[language];
             } else if (this._defaultLocale in text){
               text = text[this._defaultLocale];
             }
@@ -164,13 +165,13 @@ define([
       }
 
       var language = locale.substr(0,2),
-          languageAvailable = _(this.availableLocales).include(language);
+          languageAvailable = _(this._availableLocales).include(language);
 
       if (languageAvailable){
         return true;
       }
 
-      return locale.length === 5 && _(this.availableLocales).include(locale);
+      return locale.length === 5 && _(this._availableLocales).include(locale);
     },
 
     /**
@@ -212,7 +213,7 @@ define([
         }
 
         if (region &&
-            (!this._availableLocales || (this._availableLocales).include(locale))){
+            (!this._availableLocales || _(this._availableLocales).include(locale))){
           localeFiles.push('json!' + this._getLocaleUrl(locale));
         }
 

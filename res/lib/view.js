@@ -31,9 +31,14 @@ define([
      *   templateVar('name', 'value') => this
      *   templateVar({name: 'value', ...}) => this
      *   templateVar('name') => 'value'
+     *   templateVar() => object with all template vars
      */
     templateVar: function(name, value){
       this.templateVars = this.templateVars || {};
+
+      if (arguments.length === 0){
+        return this.templateVars;
+      }
 
       var singleArgument = arguments.length === 1;
 
@@ -106,6 +111,11 @@ define([
       if (template){
         locals = locals || this.templateVars;
         templateEngine = templateEngine || this.templateEngine;
+
+        // Add view as templateVar by default
+        if (locals && !_.has(locals, 'view')){
+          locals.view = this;
+        }
 
         var content = View.renderTemplate(template, locals, templateEngine);
         this.$el.html(content);
