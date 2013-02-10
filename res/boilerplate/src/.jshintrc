@@ -31,5 +31,6 @@
         "Storage",
         "localStorage"
     ],
-    "indent"        : 2         // Specify indentation spacing
+    "indent"        : 2,        // Specify indentation spacing
+    "white"         : false
 }
