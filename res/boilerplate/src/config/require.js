@@ -1,3 +1,5 @@
+/*global require:true*/
+/*jshint strict:false*/
 
 /**
  * RequireJS configuration

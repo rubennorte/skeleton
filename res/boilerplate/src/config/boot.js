@@ -1,3 +1,5 @@
+/*global require:true*/
+/*jshint strict:false*/
 
 /**
  * Application boot
