@@ -34,20 +34,20 @@ require.config({
     "templates": "assets/templates",
 
     // RequireJS plugins
-    "text":   "vendor/requirejs-plugins/text",
-    "json":   "vendor/requirejs-plugins/json",
-    "tpl":    "vendor/requirejs-plugins/tpl",
-    "async":  "vendor/requirejs-plugins/async",
-    "cs":     "vendor/requirejs-plugins/cs",
+    "text":   "components/requirejs-text/text",
+    "tpl":    "components/requirejs-tpl/tpl",
+    "json":   "components/requirejs-plugins/src/json",
+    "async":  "components/requirejs-plugins/src/async",
 
     // Add other RequireJS plugins here
 
     // Vendor libraries
-    "jquery": "vendor/jquery",
-    "underscore": "vendor/underscore",
-    "underscore.string": "vendor/underscore.string",
-    "backbone": "vendor/backbone",
-    "q": "vendor/q"
+    "jquery": "components/jquery/jquery",
+    "underscore": "components/underscore/underscore",
+    "underscore.string": "components/underscore.string/lib/underscore.string",
+    "backbone": "components/backbone/backbone",
+    "q": "components/q/q",
+    "jquery-serialize-object": "components/jquery-serialize-object/jquery-serialize-object"
 
     // Add other vendor libraries alias here
   },
@@ -70,7 +70,7 @@ require.config({
     },
 
     // jQuery plugins
-    "jquery/serialize-object": {
+    "jquery-serialize-object": {
       deps: ["jquery"],
       exports: "jQuery"
     }
@@ -81,7 +81,7 @@ require.config({
   packages: [
     {
       name: "skeleton",
-      location: "vendor/skeleton"
+      location: "components/skeleton-lib"
     }
   ],
 
