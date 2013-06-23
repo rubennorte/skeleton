@@ -47,7 +47,8 @@ require.config({
     "underscore.string": "components/underscore.string/lib/underscore.string",
     "backbone": "components/backbone/backbone",
     "q": "components/q/q",
-    "jquery-serialize-object": "components/jquery-serialize-object/jquery-serialize-object"
+    "jquery-serialize-object": "components/jquery-serialize-object/jquery-serialize-object",
+    "moment": "components/moment/moment"
 
     // Add other vendor libraries alias here
   },
