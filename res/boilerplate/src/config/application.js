@@ -12,7 +12,6 @@ define(['skeleton/config'], function(config){
   // config.env = undefined;
 
   // URL related config
-  // config.url = {};
   // config.url.root = '/';
   // config.url.assets = function(){ return join(config.url.root, 'assets'); };
   // config.url.images = function(){ return join(config.url.assets, 'images'); };
@@ -21,14 +20,12 @@ define(['skeleton/config'], function(config){
   // config.url.backend = '/';
   
   // I18n config
-  // config.i18n = {};
   // config.i18n.loadPath = 'locales';
   // config.i18n.defaultLocale = 'en';
   // config.i18n.locale = 'en';
   // config.i18n.availableLocales = null;
 
   // Log config
-  // config.log = {};
   // config.log.level = 'error';
 
   return config;

@@ -5,7 +5,8 @@
 
 define([
   'app',
-  'skeleton/history'
+  'skeleton/history',
+  'gen/routers'
 ], function(app, history){
 
   'use strict';

@@ -6,11 +6,12 @@
  */
 
 // If requirejs is not already defined,
-// define it as the config we want to apply
+// define it with the config function we want to use
 if (typeof require === 'undefined'){
   require = {
-    config: function(r){
-      require = r;
+    config: function(configuration){
+      // Assign the configuration to the global require variable
+      require = configuration;
     }
   };
 }

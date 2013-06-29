@@ -17,7 +17,7 @@ define([
 
     // Render the app on DOM ready
     $(function(){
-      $('body').html(mainView.render().el);
+      $('body').append(mainView.render().el);
     });
   });
 
