@@ -35,21 +35,21 @@ require.config({
     "templates": "assets/templates",
 
     // RequireJS plugins
-    "text":   "components/requirejs-text/text",
-    "tpl":    "components/requirejs-tpl/tpl",
-    "json":   "components/requirejs-plugins/src/json",
-    "async":  "components/requirejs-plugins/src/async",
+    "text":   "bower_components/requirejs-text/text",
+    "tpl":    "bower_components/requirejs-tpl/tpl",
+    "json":   "bower_components/requirejs-plugins/src/json",
+    "async":  "bower_components/requirejs-plugins/src/async",
 
     // Add other RequireJS plugins here
 
     // Vendor libraries
-    "jquery": "components/jquery/jquery",
-    "underscore": "components/underscore/underscore",
-    "underscore.string": "components/underscore.string/lib/underscore.string",
-    "backbone": "components/backbone/backbone",
-    "q": "components/q/q",
-    "jquery-serialize-object": "components/jquery-serialize-object/jquery-serialize-object",
-    "moment": "components/moment/moment"
+    "jquery": "bower_components/jquery/jquery",
+    "underscore": "bower_components/underscore/underscore",
+    "underscore.string": "bower_components/underscore.string/lib/underscore.string",
+    "backbone": "bower_components/backbone/backbone",
+    "q": "bower_components/q/q",
+    "jquery-serialize-object": "bower_components/jquery-serialize-object/jquery-serialize-object",
+    "moment": "bower_components/moment/moment"
 
     // Add other vendor libraries alias here
   },
@@ -83,7 +83,7 @@ require.config({
   packages: [
     {
       name: "skeleton",
-      location: "components/skeleton-lib"
+      location: "bower_components/skeleton-lib"
     }
   ],
 

@@ -8,7 +8,7 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "components"
+    "bower_components"
   ],
   "dependencies": {
     "skeleton-lib": "https://github.com/rubennorte/skeleton-lib.git",
