@@ -1,6 +1,6 @@
 {
   "name": "skeleton",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Skeleton.js project generator",
   "author": "Rubén Norte <rubennorte@gmail.com>",
   "dependencies": {
@@ -11,6 +11,5 @@
     "underscore.string": "2.2.x",
     "connect": "2.x"
   },
-  "bin": "./src/index.js",
-  "private": true
+  "bin": "./src/index.js"
 }
