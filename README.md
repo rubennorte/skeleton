@@ -21,3 +21,5 @@ Getting started
 3. Run the server and try it
 
         skeleton server
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/12f596106f4b98ebcdfdb201854b5925 "githalytics.com")](http://githalytics.com/rubennorte/skeleton)
